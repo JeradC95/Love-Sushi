@@ -1,0 +1,17 @@
+{
+  "name": "328/sushi",
+  "authors": [
+    {
+      "name": "Tiffany Ferderer",
+      "email": "tferderer@mail.greenriver.edu"
+    },
+    {
+      "name":"Jerad Clark",
+      "email": "jclark@mail.greenriver.edu"
+    }
+
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
