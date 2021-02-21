@@ -22,28 +22,28 @@ $f3->route('GET /', function() {
 });
 
 //define a default route(admin page)
-$f3->route('GET /', function() {
+$f3->route('GET /admin', function() {
     //echo "Hello";
     $view = new Template();
     echo $view->render('views/admin.html');
 });
 
 //define a default route(confirmation page)
-$f3->route('GET /', function() {
+$f3->route('GET /confirmation', function() {
     //echo "Hello";
     $view = new Template();
     echo $view->render('views/confirmation.html');
 });
 
 //define a default route(login page)
-$f3->route('GET /', function() {
+$f3->route('GET /login', function() {
     //echo "Hello";
     $view = new Template();
     echo $view->render('views/login.html');
 });
 
 //define a default route(order page)
-$f3->route('GET /', function() {
+$f3->route('GET /order', function() {
     //echo "Hello";
     $view = new Template();
     echo $view->render('views/order.html');
