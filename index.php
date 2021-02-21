@@ -48,3 +48,6 @@ $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/order.html');
 });
+
+//run fat free
+$f3->run();
