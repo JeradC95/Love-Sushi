@@ -33,7 +33,8 @@ $f3->route('GET /confirmation', function() {
 });
 
 //define a default route(login page)
-$f3->route('GET /login', function() {
+$f3->route('GET /login1', function() {
+    //echo "Hello";
     $view = new Template();
     echo $view->render('views/login.html');
 });

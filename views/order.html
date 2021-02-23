@@ -49,7 +49,7 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
         <div class="col-lg-7">
-            <img class="img-fluid rounded mb-4 mb-lg-0" src="http://placehold.it/900x400" alt="">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="images/sushi-main.jpg" alt="">
         </div>
         <!-- /.col-lg-8 -->
         <div class="col-lg-5">
@@ -70,17 +70,80 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
+    <div>
         <div class="mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Card One</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-sm">More Info</a>
-                </div>
-            </div>
+                <form action= "#" method="post">
+                    <fieldset>
+                        <legend>Information</legend>
+                        <div>
+                            <label for="fname">First Name*</label>
+                            <input type="text" class="form-control" id="fname" name="fname" value="{{ @fname }}">
+                            <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
+                        </div>
+                        <div>
+                            <label for="lname">Last Name*</label>
+                            <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
+                            <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
+                        </div>
+                        <div>
+                            <label for="phone">Phone Number*</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
+                            <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
+                        </div>
+                        <div>
+                            <label for="email">Email*</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
+                            <check if="{{ isset(@errors['email']) }}"> {{ @errors['email'] }}</check>
+                        </div>
+
+                        <!-- 21 + -->
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="terms" name="terms"> I am over the age 21</label>
+                        </div>
+                        <div>
+                            <label for="birthday">Date of Birth</label>
+                            <input type="text" class="form-control" id="birthday" name="birthday" value="{{ @birthday }}">
+                            <check if="{{ isset(@errors['birthday']) }}"> {{ @errors['birthday'] }}</check>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <Legend>Lets start your order</Legend>
+                        <label for="state">First Roll:</label>
+                        <select class="custom-select" id="froll" name="froll">
+                        <repeat group="{{ @rolls }}" value="{{ @roll }}">
+                            <option value="{{ @roll }}"
+                            <check if="{{ @roll == @froll }}"> selected </check>
+                            > {{ strtoupper(@roll) }}</option>
+                        </repeat>
+                    </select>
+
+                        <label for="state">Second Roll:</label>
+                        <select class="custom-select" id="state" name="state">
+                            <repeat group="{{ @states }}" value="{{ @state }}">
+                                <option value="{{ @state }}"
+                                <check if="{{ @state == @userState }}"> selected </check>
+                                > {{ strtoupper(@state) }}</option>
+                            </repeat>
+                        </select>
+
+                        <label for="state">Drink:</label>
+                        <select class="custom-select" id="state" name="state">
+                            <repeat group="{{ @states }}" value="{{ @state }}">
+                                <option value="{{ @state }}"
+                                <check if="{{ @state == @userState }}"> selected </check>
+                                > {{ strtoupper(@state) }}</option>
+                            </repeat>
+                        </select>
+                    </fieldset>
+                    <div class="mb-5 p-3">
+                    <div class="float-right mt-2">
+                        <input class="form-control btn btn-default border border-dark"
+                               type="submit" value="Place Order">
+                    </div>
+                    </div>
+            </form>
         </div>
         <!-- /.col-md-4 -->
     </div>
@@ -91,8 +154,12 @@
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    <div class="row">
+        <div class="col-9">
+            <p class="m-0 text-center text-white">**Contains raw fish. Consuming raw or undercooked fish may
+                increase your risk of food-borne illness.</p></div>
+        <div class="col-3">
+            <a class="text-right text-white-50" href="login">Admin</a></div>
     </div>
     <!-- /.container -->
 </footer>
