@@ -5,22 +5,27 @@
  *
  */
 
-class DataLayer
+//class DataLayer
 {
-    /** getMeals() returns an array of meals
+    /** getRolls() returns an array of rolls
      *  @return array
      */
-    function getMeals()
+    function getRolls()
     {
-        return array("breakfast", "2nd breakfast", "lunch", "dinner");
+        return array("dragon roll", "california roll", "spicy tuna roll", "crab tempura",
+                        "salmon nigiri", "onigiri");
     }
 
-    /** getCondiments() returns an array of condiments
+    /** getDrinks() returns an array of drinks
      *  @return array
      */
-    function getCondiments()
+    function getDrinks()
     {
-        return array("ketchup", "mustard", "kim chi", "sriracha", "mayo");
+        return array("green tea", "lemonade", "cola", "virgin margarita", "la croix");
+    }
+
+    function getAlc(){
+        return array("saki", "vodka", "rum", "whiskey", "tequila", "gin");
     }
 }
 
