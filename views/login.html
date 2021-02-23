@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Love, Sushi</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
 </head>
+
 <body>
 
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Love, Sushi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ @BASE }}">Home
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Order</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container mt-5 p-4">
+
+    <div class="my-5">
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">Admin Only</p>
+        </div>
+    </div>
+</div>
+    <!-- Content Row -->
+    <div>
+        <div class="mb-5">
+            <form action= "#" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                    <fieldset>
+                    <legend>Log In</legend>
+                    <div>
+                        <label for="fname">Username</label>
+                        <input type="text" class="form-control" id="fname" name="fname" value="{{ @fname }}">
+                        <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
+                    </div>
+                    <div>
+                        <label for="lname">Password</label>
+                        <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
+                        <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
+                    </div>
+                </fieldset>
+
+                <div class="mb-5 p-3">
+                    <div class="float-right mt-2">
+                        <input class="form-control btn btn-default border border-dark"
+                               type="submit" value="Log In">
+                    </div>
+                </div></div><div class="col-md-6 bg-secondary rounded"></div>
+                    </div>
+            </form>
+        </div>
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="row">
+        <div class="col-9">
+            </div>
+        <div class="col-3">
+            <a class="text-right text-white-50" href="login">Admin</a></div>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
