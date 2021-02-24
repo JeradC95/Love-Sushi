@@ -65,7 +65,8 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body">
-            <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+            <h3 class="text-white m-0">Base Meal $12.99</h3>
+            <h4 class="text-white m-0">Upgrade to an Adult Meal for an additional $2.00</h4>
         </div>
     </div>
 
@@ -73,6 +74,53 @@
     <div>
         <div class="mb-5">
                 <form action= "#" method="post">
+                    <fieldset>
+                    <Legend>Lets start your order</Legend>
+                    <label for="froll">First Roll:</label>
+                    <select class="custom-select" id="froll" name="froll">
+                        <repeat group="{{ @frolls }}" value="{{ @roll }}">
+                            <option value="{{ @roll }}"
+                            <check if="{{ @roll == @fix }}"> selected </check>
+                            > {{ ucwords(@roll) }}</option>
+                        </repeat>
+                    </select>
+
+                    <label for="sroll">Second Roll:</label>
+                    <select class="custom-select" id="sroll" name="sroll">
+                        <repeat group="{{ @srolls }}" value="{{ @sroll }}">
+                            <option value="{{ @sroll }}"
+                            <check if="{{ @sroll == @userState }}"> selected </check>
+                            > {{ ucwords(@sroll) }}</option>
+                        </repeat>
+                    </select>
+
+                    <label for="drink">Drink:</label>
+                    <select class="custom-select" id="drink" name="drink">
+                        <repeat group="{{ @drinks }}" value="{{ @drink }}">
+                            <option value="{{ @drink }}"
+                            <check if="{{ @drink == @userState }}"> selected </check>
+                            > {{ ucwords(@drink) }}</option>
+                        </repeat>
+                    </select>
+
+                        <!--If the checkbox is checked, show Alcohol and require DOB !-->
+                        <div class="checkbox">
+                        <label><input type="checkbox" id="terms" name="terms"> I am over the age 21</label>
+                    </div>
+
+                        <div class="form check form-check-inline">
+                            <p class="">Add Alcohol: (+$2)</p>
+                            <div class="container">
+                                <repeat group="{{ @alcohols }}" value="{{ @alcohol }}">
+                                    <input class="form-check-input" type="radio"
+                                           name="alcohol" id="{{ @alcohol }}"
+                                           value="{{ @alcohol }}">
+                                    <label class="form-check-label pr-2" for="{{ @alcohol }}">{{ ucfirst(@alcohol) }}</label>
+                                </repeat>
+                                <check if="{{ isset(@errors['alcohol']) }}"> {{ @errors['alcohol'] }}</check>
+                            </div>
+                        </div>
+                </fieldset>
                     <fieldset>
                         <legend>Information</legend>
                         <div>
@@ -97,9 +145,6 @@
                         </div>
 
                         <!-- 21 + -->
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="terms" name="terms"> I am over the age 21</label>
-                        </div>
                         <div>
                             <label for="birthday">Date of Birth</label>
                             <input type="text" class="form-control" id="birthday" name="birthday" value="{{ @birthday }}">
@@ -108,35 +153,6 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
-                        <Legend>Lets start your order</Legend>
-                        <label for="state">First Roll:</label>
-                        <select class="custom-select" id="froll" name="froll">
-                        <repeat group="{{ @rolls }}" value="{{ @roll }}">
-                            <option value="{{ @roll }}"
-                            <check if="{{ @roll == @froll }}"> selected </check>
-                            > {{ strtoupper(@roll) }}</option>
-                        </repeat>
-                    </select>
-
-                        <label for="state">Second Roll:</label>
-                        <select class="custom-select" id="state" name="state">
-                            <repeat group="{{ @states }}" value="{{ @state }}">
-                                <option value="{{ @state }}"
-                                <check if="{{ @state == @userState }}"> selected </check>
-                                > {{ strtoupper(@state) }}</option>
-                            </repeat>
-                        </select>
-
-                        <label for="state">Drink:</label>
-                        <select class="custom-select" id="state" name="state">
-                            <repeat group="{{ @states }}" value="{{ @state }}">
-                                <option value="{{ @state }}"
-                                <check if="{{ @state == @userState }}"> selected </check>
-                                > {{ strtoupper(@state) }}</option>
-                            </repeat>
-                        </select>
-                    </fieldset>
                     <div class="mb-5 p-3">
                     <div class="float-right mt-2">
                         <input class="form-control btn btn-default border border-dark"

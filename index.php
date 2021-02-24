@@ -8,6 +8,8 @@ error_reporting(E_ALL);
 
 //require the autoload file
 require_once('vendor/autoload.php');
+require_once('model/data-layer.php');
+require_once('model/validate.php');
 
 
 //Create an instance of Base class
@@ -40,7 +42,15 @@ $f3->route('GET /login1', function() {
 });
 
 //define a default route(order page)
-$f3->route('GET /order', function() {
+$f3->route('GET|POST /order', function($f3) {
+
+
+    //Set Arrays
+    $f3->set('frolls', getRolls());
+    $f3->set('srolls', getRolls());
+    $f3->set('drinks', getDrinks());
+    $f3->set('alcohols', getAlc());
+
     $view = new Template();
     echo $view->render('views/order.html');
 });
