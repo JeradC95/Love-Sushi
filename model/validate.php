@@ -31,6 +31,10 @@ function validEmail($email) {
 
 }
 
+//Function not finished
+function validDate($day, $month, $year) {
+}
+
 
     /** validChoice() returns true if the selected roll is in the list
      * of valid options

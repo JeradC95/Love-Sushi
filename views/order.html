@@ -122,7 +122,7 @@
                             <p class="">Add Alcohol: (+$2)</p>
                             <div class="container">
                                 <repeat group="{{ @alcohols }}" value="{{ @alcohol }}">
-                                    <input class="form-check-input" type="radio" disabled
+                                    <input class="form-check-input" type="radio"
                                            name="alcohol" id="{{ @alcohol }}"
                                            value="{{ @alcohol }}">
                                     <label class="form-check-label pr-2" for="{{ @alcohol }}">{{ ucfirst(@alcohol) }}</label>
@@ -158,7 +158,7 @@
                         <!-- 21 + -->
                         <div>
                             <label for="birthday">Date of Birth</label>
-                            <input type="text" disabled class="form-control w-25" id="birthday" name="birthday" value="{{ @birthday }}">
+                            <input type="text" class="form-control w-25" id="birthday" name="birthday" value="{{ @birthday }}">
                             <check if="{{ isset(@errors['birthday']) }}"> {{ @errors['birthday'] }}</check>
 
                         </div>
