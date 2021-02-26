@@ -24,6 +24,10 @@
         return array("green tea", "lemonade", "cola", "virgin margarita", "la croix");
     }
 
+    /** getAlc() returns an array of alcoholic options
+    *    @return array
+    */
+
     function getAlc(){
         return array("saki", "vodka", "rum", "whiskey", "tequila", "gin");
     }
