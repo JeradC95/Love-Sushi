@@ -65,7 +65,8 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body">
-            <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+            <h3 class="text-white m-0">Base Meal $12.99</h3>
+            <h4 class="text-white m-0">Upgrade to an Adult Meal for an additional $2.00</h4>
         </div>
     </div>
 
@@ -74,72 +75,98 @@
         <div class="mb-5">
                 <form action= "#" method="post">
                     <fieldset>
+                        <h2>Order Here</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <label for="froll">First Roll:</label>
+                                <check if="{{ isset(@errors['froll']) }}"> {{ @errors['froll'] }}</check>
+                                <select class="custom-select " id="froll" name="froll">
+                                    <option value=""></option>
+                                    <repeat group="{{ @frolls }}" value="{{ @roll }}">
+                                        <option value="{{ @roll }}"
+                                        <check if="{{ @roll == @userFroll }}"> selected </check>
+                                        > {{ ucwords(@roll) }}</option>
+                                    </repeat>
+                                </select>
+                                <label for="sroll">Second Roll:</label>
+                                <check if="{{ isset(@errors['sroll']) }}"> {{ @errors['sroll'] }}</check>
+                                <select class="custom-select" id="sroll" name="sroll">
+                                    <option value=""></option>
+                                    <repeat group="{{ @srolls }}" value="{{ @sroll }}">
+                                        <option value="{{ @sroll }}"
+                                        <check if="{{ @sroll == @userSroll }}"> selected </check>
+                                        > {{ ucwords(@sroll) }}</option>
+                                    </repeat>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                <label for="drink">Drink:</label>
+                                    <check if="{{ isset(@errors['drink']) }}"> {{ @errors['drink'] }}</check>
+                                <select class="custom-select" id="drink" name="drink">
+                                    <option value=""></option>
+                                    <repeat group="{{ @drinks }}" value="{{ @drink }}">
+                                        <option value="{{ @drink }}"
+                                        <check if="{{ @drink == @userDrink }}"> selected </check>
+                                        > {{ ucwords(@drink) }}</option>
+                                    </repeat>
+                                </select>
+                            </div>
+                        <!--If the checkbox is checked, show Alcohol and require DOB !-->
+                        <div class="checkbox">
+                        <label><input type="checkbox" id="terms" name="terms"> I am over the age 21</label>
+                        </div>
+
+                        <div class="form check form-check-inline">
+                            <p class="">Add Alcohol: (+$2)</p>
+                            <div class="container">
+                                <repeat group="{{ @alcohols }}" value="{{ @alcohol }}">
+                                    <input class="form-check-input" type="radio"
+                                           name="alcohol" id="{{ @alcohol }}"
+                                           value="{{ @alcohol }}">
+                                    <label class="form-check-label pr-2" for="{{ @alcohol }}">{{ ucfirst(@alcohol) }}</label>
+                                </repeat>
+                                <check if="{{ isset(@errors['alcohol']) }}"> {{ @errors['alcohol'] }}</check>
+                            </div>
+                        </div>   </div>
+    </div>
+                </fieldset>
+                    <fieldset>
                         <legend>Information</legend>
                         <div>
                             <label for="fname">First Name*</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value="{{ @fname }}">
+                            <input type="text" class="form-control w-50" id="fname" name="fname" value="{{ @fname }}">
                             <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
                         </div>
                         <div>
                             <label for="lname">Last Name*</label>
-                            <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
+                            <input type="text" class="form-control w-50" id="lname" name="lname" value="{{ @lname }}">
                             <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
                         </div>
                         <div>
                             <label for="phone">Phone Number*</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
+                            <input type="text" class="form-control w-50" id="phone" name="phone" value="{{ @phone }}">
                             <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
                         </div>
                         <div>
                             <label for="email">Email*</label>
-                            <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
+                            <input type="text" class="form-control w-50" id="email" name="email" value="{{ @email }}">
                             <check if="{{ isset(@errors['email']) }}"> {{ @errors['email'] }}</check>
                         </div>
 
                         <!-- 21 + -->
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="terms" name="terms"> I am over the age 21</label>
-                        </div>
                         <div>
                             <label for="birthday">Date of Birth</label>
-                            <input type="text" class="form-control" id="birthday" name="birthday" value="{{ @birthday }}">
+                            <input type="text" class="form-control w-25" id="birthday" name="birthday" value="{{ @birthday }}">
                             <check if="{{ isset(@errors['birthday']) }}"> {{ @errors['birthday'] }}</check>
 
                         </div>
                     </fieldset>
 
-                    <fieldset>
-                        <Legend>Lets start your order</Legend>
-                        <label for="state">First Roll:</label>
-                        <select class="custom-select" id="froll" name="froll">
-                        <repeat group="{{ @rolls }}" value="{{ @roll }}">
-                            <option value="{{ @roll }}"
-                            <check if="{{ @roll == @froll }}"> selected </check>
-                            > {{ strtoupper(@roll) }}</option>
-                        </repeat>
-                    </select>
-
-                        <label for="state">Second Roll:</label>
-                        <select class="custom-select" id="state" name="state">
-                            <repeat group="{{ @states }}" value="{{ @state }}">
-                                <option value="{{ @state }}"
-                                <check if="{{ @state == @userState }}"> selected </check>
-                                > {{ strtoupper(@state) }}</option>
-                            </repeat>
-                        </select>
-
-                        <label for="state">Drink:</label>
-                        <select class="custom-select" id="state" name="state">
-                            <repeat group="{{ @states }}" value="{{ @state }}">
-                                <option value="{{ @state }}"
-                                <check if="{{ @state == @userState }}"> selected </check>
-                                > {{ strtoupper(@state) }}</option>
-                            </repeat>
-                        </select>
-                    </fieldset>
                     <div class="mb-5 p-3">
-                    <div class="float-right mt-2">
-                        <input class="form-control btn btn-default border border-dark"
+                    <div class="float-right w-25 mt-2">
+                        <input class="form-control btn btn-default border bg-secondary text-white border-dark"
                                type="submit" value="Place Order">
                     </div>
                     </div>
