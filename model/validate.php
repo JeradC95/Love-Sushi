@@ -1,6 +1,6 @@
 <?php
     /* model/validate.php
-     * Contains validation functions for Food app
+     * Contains validation functions
      *
      */
 
