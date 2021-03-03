@@ -113,9 +113,9 @@ $f3->route('GET|POST /order', function($f3) {
         if(isset($_POST['terms'])) {
             $_SESSION['terms'] = $_POST['terms'];
 
-            $alcohol = $_POST['alcohol'];
-            if ($validator->validChoice($alcohol, $dataLayer->getAlc())) {
-                $_SESSION['alcohol'] = $alcohol;
+            $userAlcohol = $_POST['alcohol'];
+            if ($validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
+                $_SESSION['alcohol'] = $userAlcohol;
             } else {
                 $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
             }
@@ -126,19 +126,24 @@ $f3->route('GET|POST /order', function($f3) {
                 $day = $date[1];
                 $month = $date[0];
                 $year = $date[2];
+                if(count($date) == 3) {
+
+
                 if(!checkdate($month, $day, $year)) {
                     $f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
                 }
                 else {
                     if($validator->validBirthday($birthday)) {
-                        $_SESSION['birthday'] = $alcohol;
+                        $_SESSION['birthday'] = $birthday;
                     }
                     else {
                         $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
                     }
                 }
+
             } else {
                 $f3->set('errors["birthday"]', "Please verify birthdate.");
+            }
             }
         }
 
@@ -158,6 +163,7 @@ $f3->route('GET|POST /order', function($f3) {
     $f3->set('userSroll', isset($userSroll) ? $userSroll : "");
     $f3->set('userFroll', isset($userFroll) ? $userFroll : "");
     $f3->set('userDrink', isset($userDrink) ? $userDrink : "");
+    $f3->set('userAlcohol', isset($userAlcohol) ? $userAlcohol : "");
     $f3->set('fname', isset($fname) ? $fname : "");
     $f3->set('lname', isset($lname) ? $lname : "");
     $f3->set('phone', isset($phone) ? $phone : "");
