@@ -10,12 +10,15 @@ session_start();
 
 //require the autoload file
 require_once('vendor/autoload.php');
-require_once('model/data-layer.php');
-require_once('model/validate.php');
 
+//Start a session
+session_start();
 
 //Create an instance of Base class
 $f3 = Base::instance();
+$validator = new ValidateSushi();
+$dataLayer = new DataLayerSushi();
+
 $f3->set('DEBUG', 3);
 
 //define a default route(home page)
@@ -45,12 +48,14 @@ $f3->route('GET /login1', function() {
 
 //define a default route(order page)
 $f3->route('GET|POST /order', function($f3) {
+    global $validator;
+    global $dataLayer;
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Get Required Data
         $userFroll = $_POST['froll'];
 
-        if (validChoice($userFroll, getRolls())) {
+        if ($validator->validChoice($userFroll, $dataLayer->getRolls())) {
             $_SESSION['userFroll'] = $userFroll;
         } else {
             $f3->set('errors["froll"]', "Please select a valid roll.");
@@ -58,14 +63,14 @@ $f3->route('GET|POST /order', function($f3) {
 
         $userSroll = $_POST['sroll'];
 
-        if (validChoice($userSroll, getRolls())) {
+        if ($validator->validChoice($userSroll, $dataLayer->getRolls())) {
             $_SESSION['userSroll'] = $userSroll;
         } else {
             $f3->set('errors["sroll"]', "Please select a valid roll.");
         }
         $userDrink = $_POST['drink'];
 
-        if (validChoice($userDrink, getDrinks())) {
+        if ($validator->validChoice($userDrink, $dataLayer->getDrinks())) {
             $_SESSION['userDrink'] = $userDrink;
         } else {
             $f3->set('errors["drink"]', "Please select a drink.");
@@ -78,21 +83,21 @@ $f3->route('GET|POST /order', function($f3) {
         $email = trim($_POST['email']);
 
         //Validate
-        if(validName($fname)) {
+        if($validator->validName($fname)) {
             $_SESSION['fname'] = $fname;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["fname"]',"First name cannot be blank.");
         }
-        if(validName($lname)) {
+        if($validator->validName($lname)) {
             $_SESSION['lname'] = $lname;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["lname"]',"Last name cannot be blank.");
         }
-        if(validPhone($phone)) {
+        if($validator->validPhone($phone)) {
             $_SESSION['phone'] = $phone;
         }
         //data is not valid, set error in f3 hive
@@ -100,7 +105,7 @@ $f3->route('GET|POST /order', function($f3) {
             $f3->set('errors["phone"]',"Please type a valid phone number.");
         }
 
-        if (validEmail($email)) {
+        if ($validator->validEmail($email)) {
             $_SESSION['email'] = $email;
         } else {
             $f3->set('errors["email"]', "Email required.");
@@ -111,7 +116,7 @@ $f3->route('GET|POST /order', function($f3) {
             $_SESSION['terms'] = $_POST['terms'];
 
             $alcohol = $_POST['alcohol'];
-            if (validChoice($alcohol, getAlc())) {
+            if ($validator->validChoice($alcohol, $dataLayer->getAlc())) {
                 $_SESSION['alcohol'] = $alcohol;
             } else {
                 $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
@@ -136,10 +141,10 @@ $f3->route('GET|POST /order', function($f3) {
     }
 
     //Set Arrays
-    $f3->set('frolls', getRolls());
-    $f3->set('srolls', getRolls());
-    $f3->set('drinks', getDrinks());
-    $f3->set('alcohols', getAlc());
+    $f3->set('frolls', $dataLayer->getRolls());
+    $f3->set('srolls', $dataLayer->getRolls());
+    $f3->set('drinks', $dataLayer->getDrinks());
+    $f3->set('alcohols', $dataLayer->getAlc());
 
     //Sticky Values
     $f3->set('userSroll', isset($userSroll) ? $userSroll : "");
