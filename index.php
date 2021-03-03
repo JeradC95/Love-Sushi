@@ -115,7 +115,7 @@ $f3->route('GET|POST /order', function($f3) {
 
             $userAlcohol = $_POST['alcohol'];
             if ($validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
-                $_SESSION['alcohol'] = $userAlcohol;
+                $_SESSION['userAlcohol'] = $userAlcohol;
             } else {
                 $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
             }
