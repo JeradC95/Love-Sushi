@@ -5,7 +5,7 @@
  *
  */
 
-//class DataLayer
+class DataLayerSushi
 {
     /** getRolls() returns an array of rolls
      *  @return array

@@ -3,16 +3,15 @@
      * Contains validation functions
      *
      */
-
+//contains validation functions
 Class ValidateSushi
 {
+    private  $_dataLayer;
+    function __construct()
+    {
+        $this->_dataLayer = new DataLayerSushi();
+    }
 
-//    private  $_dataLayer;
-//    function __construct()
-//    {
-//        $this->_dataLayer = $dataLayer;
-//    };
-//contains validation functions
     /** validName() returns true if Name is not empty */
     function validName($name)
     {
