@@ -52,25 +52,18 @@ $f3->route('GET|POST /order', function($f3) {
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Get Required Data
         $userFroll = $_POST['froll'];
+        $userSroll = $_POST['sroll'];
+        $userDrink = $_POST['drink'];
 
-        if ($validator->validChoice($userFroll, $dataLayer->getRolls())) {
-            $_SESSION['userFroll'] = $userFroll;
-        } else {
+        if (!$validator->validChoice($userFroll, $dataLayer->getRolls())) {
             $f3->set('errors["froll"]', "Please select a valid roll.");
         }
 
-        $userSroll = $_POST['sroll'];
-
-        if ($validator->validChoice($userSroll, $dataLayer->getRolls())) {
-            $_SESSION['userSroll'] = $userSroll;
-        } else {
+        if (!$validator->validChoice($userSroll, $dataLayer->getRolls())) {
             $f3->set('errors["sroll"]', "Please select a valid roll.");
         }
-        $userDrink = $_POST['drink'];
 
-        if ($validator->validChoice($userDrink, $dataLayer->getDrinks())) {
-            $_SESSION['userDrink'] = $userDrink;
-        } else {
+        if (!$validator->validChoice($userDrink, $dataLayer->getDrinks())) {
             $f3->set('errors["drink"]', "Please select a drink.");
         }
 
@@ -81,31 +74,17 @@ $f3->route('GET|POST /order', function($f3) {
         $email = trim($_POST['email']);
 
         //Validate
-        if($validator->validName($fname)) {
-            $_SESSION['fname'] = $fname;
-        }
-        //data is not valid, set error in f3 hive
-        else {
+        if(!$validator->validName($fname)) {
             $f3->set('errors["fname"]',"First name cannot be blank.");
         }
-        if($validator->validName($lname)) {
-            $_SESSION['lname'] = $lname;
-        }
-        //data is not valid, set error in f3 hive
-        else {
+        if(!$validator->validName($lname)) {
             $f3->set('errors["lname"]',"Last name cannot be blank.");
         }
-        if($validator->validPhone($phone)) {
-            $_SESSION['phone'] = $phone;
-        }
-        //data is not valid, set error in f3 hive
-        else {
+        if(!$validator->validPhone($phone)) {
             $f3->set('errors["phone"]',"Please type a valid phone number.");
         }
 
-        if ($validator->validEmail($email)) {
-            $_SESSION['email'] = $email;
-        } else {
+        if (!$validator->validEmail($email)) {
             $f3->set('errors["email"]', "Email required.");
         }
 
@@ -114,9 +93,7 @@ $f3->route('GET|POST /order', function($f3) {
             $_SESSION['terms'] = $_POST['terms'];
 
             $userAlcohol = $_POST['alcohol'];
-            if ($validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
-                $_SESSION['userAlcohol'] = $userAlcohol;
-            } else {
+            if (!$validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
                 $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
             }
 
@@ -133,22 +110,34 @@ $f3->route('GET|POST /order', function($f3) {
                     $f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
                 }
                 else {
-                    if($validator->validBirthday($birthday)) {
-                        $_SESSION['birthday'] = $birthday;
-                    }
-                    else {
+                    if(!$validator->validBirthday($birthday)) {
                         $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
                     }
                 }
 
-            } else {
-                $f3->set('errors["birthday"]', "Please verify birthdate.");
             }
+                else {
+                $f3->set('errors["birthday"]', "Please verify birthdate.");
+                }
             }
         }
 
         //if there are no errors, redirect
         if (empty($f3->get('errors'))) {
+
+            //check if an adult meal
+            if(isset($_POST['terms'])) {
+                $customer = new AdultCustomer($fname, $lname, $phone, $email);
+                $customer->setDob($birthday);
+                $meal = new AdultOrder($userFroll, $userSroll, $userDrink);
+                $meal->setAlcohol($userAlcohol);
+            }
+            else {
+                $customer = new Customer($fname, $lname, $phone, $email);
+                $meal = new SushiOrder($userFroll, $userSroll, $userDrink);
+            }
+            $_SESSION['user'] = $customer;
+            $_SESSION['meal'] = $meal;
             $f3->reroute('/confirmation');  //get
         }
     }
