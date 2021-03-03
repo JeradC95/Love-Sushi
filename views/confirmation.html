@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="{{ @BASE }}">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -61,16 +61,25 @@
 
 
 <!-- Summary content here -->
+
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <h1>Order Summary</h1>
+            <h3>Meal Total: </h3>
+
+        </div>
+    </div>
+    <h2>Thank you for your order, {{ @SESSION.fname }} {{@SESSION.lname}}!</h2>
+
     <div class="container">
-        <h1>Order Summary</h1>
+    <p>Sushi Rolls: {{ @SESSION.userFroll }} {{ @SESSION.userSroll }}</p>
+    <p>Beverage: {{ @SESSION.userAlcohol }} {{ @SESSION.userDrink }}</p>
+        <h6>Your order will be ready in 20 minutes!</h6>
+    </div>
 
-        <h2>Thank you for your order, {{ @SESSION.fname }} {{@SESSION.lname}}!</h2>
 
-        <h3>You ordered {{ @SESSION.userFroll }} and {{ @SESSION.userSroll }}</h3>
-        <h3>With {{ @SESSION.userAlcohol }} {{ @SESSION.userDrink }}</h3>
 
-        <a href="order">Place another order</a><br>
-        <a href="{{ @BASE }}">Home page</a>
     </div>
 
 
