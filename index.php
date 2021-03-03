@@ -120,16 +120,28 @@ $f3->route('GET|POST /order', function($f3) {
                 $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
             }
 
-//            $birthday = $_POST['birthday'];
-//            if (!empty($birthday)) {
+            $birthday = $_POST['birthday'];
+            if (!empty($birthday)) {
+                $date = explode("/", $birthday);
+                $day = $date[1];
+                $month = $date[0];
+                $year = $date[2];
+                if(!checkdate($month, $day, $year)) {
+                    $f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
 //                if(validDate($birthday)) {
 //                    $_SESSION['birthday'] = $birthday;
-//                }else {
-//                    $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
-//                }
+                }
+                else {
+                    $dob=strtotime($birthday);
+                    $today = strtotime("+21 years", $dob);
+
+                    if(time() < $today) {
+                        $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
+                    }
+                }
 //            } else {
 //                $f3->set('errors["birthday"]', "Please verify birthdate.");
-//            }
+            }
         }
 
         //if there are no errors, redirect
