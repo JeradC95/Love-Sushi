@@ -6,8 +6,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
-
 //require the autoload file
 require_once('vendor/autoload.php');
 
@@ -130,19 +128,17 @@ $f3->route('GET|POST /order', function($f3) {
                 $year = $date[2];
                 if(!checkdate($month, $day, $year)) {
                     $f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
-//                if(validDate($birthday)) {
-//                    $_SESSION['birthday'] = $birthday;
                 }
                 else {
-                    $dob=strtotime($birthday);
-                    $today = strtotime("+21 years", $dob);
-
-                    if(time() < $today) {
+                    if($validator->validBirthday($birthday)) {
+                        $_SESSION['birthday'] = $alcohol;
+                    }
+                    else {
                         $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
                     }
                 }
-//            } else {
-//                $f3->set('errors["birthday"]', "Please verify birthdate.");
+            } else {
+                $f3->set('errors["birthday"]', "Please verify birthdate.");
             }
         }
 

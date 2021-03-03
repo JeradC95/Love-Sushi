@@ -57,5 +57,13 @@ Class ValidateSushi
         $validChoice = $foodArray;
         return (in_array($selected, $validChoice));
     }
+
+    function validBirthday($birthday)
+    {
+        $dob = strtotime($birthday);
+        $today = strtotime("+21 years", $dob);
+
+        return (time() > $today);
+    }
 }
 
