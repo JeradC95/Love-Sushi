@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Conmfirmaiton</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Confirmation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
 </head>
 <body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Love, Sushi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="order">Order</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5 p-4">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="images/sushi-main.jpg" alt="">
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Love, Sushi</h1>
+            <p>Love, sushi is an innovative new way to order your favorite sushi!
+                Choose two of your favorite rolls along with a drink for a low price! Mix and match to
+                your ideal meal. Pick up only.</p>
+        </div>
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+
+<!-- Summary content here -->
+    <div class="container">
+        <h1>Order Summary</h1>
+
+        <h2>Thank you for your order, {{ @SESSION.fname }} {{@SESSION.lname}}!</h2>
+
+        <h3>You ordered {{ @SESSION.userFroll }} and {{ @SESSION.userSroll }}</h3>
+        <h3>With {{ @SESSION.userAlcohol }} {{ @SESSION.userDrink }}</h3>
+
+        <a href="order">Place another order</a><br>
+        <a href="{{ @BASE }}">Home page</a>
+    </div>
+
+
+</div>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="row">
+            <div class="col-9">
+                <p class="m-0 text-center text-white">*Contains raw fish. Consuming raw or undercooked fish may
+                    increase your risk of food-borne illness.</p></div>
+            <div class="col-3">
+                <a class="text-right text-white-50" href="login1">Admin</a></div>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
