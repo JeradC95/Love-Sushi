@@ -4,37 +4,48 @@
      *
      */
 
+Class ValidateSushi
+{
 
+//    private  $_dataLayer;
+//    function __construct()
+//    {
+//        $this->_dataLayer = $dataLayer;
+//    };
 //contains validation functions
-/** validName() returns true if Name is not empty */
-function validName($name) {
-    return !empty($name && ctype_alpha($name));}
-
-/** validPhone returns true if phone is only numbers and is 9 characters long
- * @param $phone string phone number
- * @return bool valid number
- */
-function validPhone($phone) {
-    if(strlen($phone)==10) {
-        return is_numeric($phone);
+    /** validName() returns true if Name is not empty */
+    function validName($name)
+    {
+        return !empty($name && ctype_alpha($name));
     }
-    return false;
-}
 
-/** validEmail returns true if email contains @ and .
- *  @param $email string
- * @return bool
- */
-function validEmail($email) {
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    return (filter_var($email, FILTER_VALIDATE_EMAIL));
+    /** validPhone returns true if phone is only numbers and is 9 characters long
+     * @param $phone string phone number
+     * @return bool valid number
+     */
+    function validPhone($phone)
+    {
+        if (strlen($phone) == 10) {
+            return is_numeric($phone);
+        }
+        return false;
+    }
 
-}
+    /** validEmail returns true if email contains @ and .
+     * @param $email string
+     * @return bool
+     */
+    function validEmail($email)
+    {
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        return (filter_var($email, FILTER_VALIDATE_EMAIL));
+
+    }
 
 //Function not finished
-function validDate($day, $month, $year) {
-}
-
+    function validDate($day, $month, $year)
+    {
+    }
 
     /** validChoice() returns true if the selected roll is in the list
      * of valid options
@@ -45,6 +56,7 @@ function validDate($day, $month, $year) {
     function validChoice($selected, $foodArray)
     {
         $validChoice = $foodArray;
-        return (in_array($selected, $validChoice));;
+        return (in_array($selected, $validChoice));
     }
+}
 
