@@ -27,15 +27,15 @@ class SushiController
             $userDrink = $_POST['drink'];
 
             if (!$validator->validChoice($userFroll, $dataLayer->getRolls())) {
-                $f3->set('errors["froll"]', "Please select a valid roll.");
+                $this->_f3->set('errors["froll"]', "Please select a valid roll.");
             }
 
             if (!$validator->validChoice($userSroll, $dataLayer->getRolls())) {
-                $f3->set('errors["sroll"]', "Please select a valid roll.");
+                $this->_f3->set('errors["sroll"]', "Please select a valid roll.");
             }
 
             if (!$validator->validChoice($userDrink, $dataLayer->getDrinks())) {
-                $f3->set('errors["drink"]', "Please select a drink.");
+                $this->_f3->set('errors["drink"]', "Please select a drink.");
             }
 
             //get data from post array
@@ -46,17 +46,17 @@ class SushiController
 
             //Validate
             if(!$validator->validName($fname)) {
-                $f3->set('errors["fname"]',"First name cannot be blank.");
+                $this->_f3->set('errors["fname"]',"First name cannot be blank.");
             }
             if(!$validator->validName($lname)) {
-                $f3->set('errors["lname"]',"Last name cannot be blank.");
+                $this->_f3->set('errors["lname"]',"Last name cannot be blank.");
             }
             if(!$validator->validPhone($phone)) {
-                $f3->set('errors["phone"]',"Please type a valid phone number.");
+                $this->_f3->set('errors["phone"]',"Please type a valid phone number.");
             }
 
             if (!$validator->validEmail($email)) {
-                $f3->set('errors["email"]', "Email required.");
+                $this->_f3->set('errors["email"]', "Email required.");
             }
 
             //Alcohol option
@@ -65,7 +65,7 @@ class SushiController
 
                 $userAlcohol = $_POST['alcohol'];
                 if (!$validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
-                    $f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
+                    $this->_f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
                 }
 
                 $birthday = $_POST['birthday'];
@@ -78,23 +78,23 @@ class SushiController
 
 
                         if(!checkdate($month, $day, $year)) {
-                            $f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
+                            $this->_f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
                         }
                         else {
                             if(!$validator->validBirthday($birthday)) {
-                                $f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
+                                $this->_f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
                             }
                         }
 
                     }
                     else {
-                        $f3->set('errors["birthday"]', "Please verify birthdate.");
+                        $this->_f3->set('errors["birthday"]', "Please verify birthdate.");
                     }
                 }
             }
 
             //if there are no errors, redirect
-            if (empty($f3->get('errors'))) {
+            if (empty($this->_f3->get('errors'))) {
 
                 //check if an adult meal
                 if(isset($_POST['terms'])) {
@@ -109,25 +109,25 @@ class SushiController
                 }
                 $_SESSION['user'] = $customer;
                 $_SESSION['meal'] = $meal;
-                $f3->reroute('/confirmation');  //get
+                $this->_f3->reroute('/confirmation');  //get
             }
         }
 
         //Set Arrays
-        $f3->set('frolls', $dataLayer->getRolls());
-        $f3->set('srolls', $dataLayer->getRolls());
-        $f3->set('drinks', $dataLayer->getDrinks());
-        $f3->set('alcohols', $dataLayer->getAlc());
+        $this->_f3->set('frolls', $dataLayer->getRolls());
+        $this->_f3->set('srolls', $dataLayer->getRolls());
+        $this->_f3->set('drinks', $dataLayer->getDrinks());
+        $this->_f3->set('alcohols', $dataLayer->getAlc());
 
         //Sticky Values
-        $f3->set('userSroll', isset($userSroll) ? $userSroll : "");
-        $f3->set('userFroll', isset($userFroll) ? $userFroll : "");
-        $f3->set('userDrink', isset($userDrink) ? $userDrink : "");
-        $f3->set('userAlcohol', isset($userAlcohol) ? $userAlcohol : "");
-        $f3->set('fname', isset($fname) ? $fname : "");
-        $f3->set('lname', isset($lname) ? $lname : "");
-        $f3->set('phone', isset($phone) ? $phone : "");
-        $f3->set('email', isset($email) ? $email : "");
+        $this->_f3->set('userSroll', isset($userSroll) ? $userSroll : "");
+        $this->_f3->set('userFroll', isset($userFroll) ? $userFroll : "");
+        $this->_f3->set('userDrink', isset($userDrink) ? $userDrink : "");
+        $this->_f3->set('userAlcohol', isset($userAlcohol) ? $userAlcohol : "");
+        $this->_f3->set('fname', isset($fname) ? $fname : "");
+        $this->_f3->set('lname', isset($lname) ? $lname : "");
+        $this->_f3->set('phone', isset($phone) ? $phone : "");
+        $this->_f3->set('email', isset($email) ? $email : "");
 
         $view = new Template();
         echo $view->render('views/order.html');
