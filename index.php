@@ -16,7 +16,7 @@ session_start();
 $f3 = Base::instance();
 $validator = new ValidateSushi();
 $dataLayer = new DataLayerSushi();
-$controller = new SushiController();
+$controller = new SushiController($f3);
 
 $f3->set('DEBUG', 3);
 
