@@ -9,6 +9,12 @@ error_reporting(E_ALL);
 //require the autoload file
 require_once('vendor/autoload.php');
 
+//Database
+require $_SERVER['DOCUMENT_ROOT'].'/../config.php'; //access to the database
+
+//Login info
+require $_SERVER['DOCUMENT_ROOT'].'/../logincreds.php';
+
 //Start a session
 session_start();
 
@@ -39,7 +45,7 @@ $f3->route('GET /confirmation', function() {
 });
 
 //define login page
-$f3->route('GET /admin-login', function() {
+$f3->route('GET|POST /admin-login', function() {
     global $controller;
     $controller->login();
 });
@@ -48,6 +54,12 @@ $f3->route('GET /admin-login', function() {
 $f3->route('GET /admin', function() {
     global $controller;
     $controller->admin();
+});
+
+//define login page
+$f3->route('GET|POST /logout', function() {
+    global $controller;
+    $controller->logout();
 });
 
 //run fat free

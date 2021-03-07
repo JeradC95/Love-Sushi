@@ -21,7 +21,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Love, Sushi</a>
+        <a class="navbar-brand" href="{{ @BASE }}">Love, Sushi</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,14 +61,13 @@
                     <fieldset>
                     <legend>Log In</legend>
                     <div>
-                        <label for="fname">Username</label>
-                        <input type="text" class="form-control" id="fname" name="fname" value="{{ @fname }}">
-                        <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ @username }}">
+                        <check if="{{ isset(@errors['username']) }}"> {{ @errors['username'] }}</check>
                     </div>
                     <div>
-                        <label for="lname">Password</label>
-                        <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
-                        <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" id="password" name="password" value="{{ @password }}">
                     </div>
                 </fieldset>
 
@@ -94,7 +93,7 @@
         <div class="col-9">
             </div>
         <div class="col-3">
-            <a class="text-right text-white-50" href="login">Admin</a></div>
+            <a class="text-right text-white-50" href="admin-login">Admin</a></div>
     </div>
     <!-- /.container -->
 </footer>

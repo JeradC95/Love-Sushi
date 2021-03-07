@@ -141,14 +141,50 @@ class SushiController
 
     function login()
     {
-        //echo "Hello";
+
+    //If the form has been submitted
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //Get the username and password
+            $username = strtolower(trim($_POST['username']));
+            $password = trim($_POST['password']);
+
+            //Actual username and password need to be stored in a seperate file
+            //Should be moved to home directory ABOVE public-html
+            $adminUser = "admin";
+            $adminPassword = "@dm1n";
+
+            //If they are correct
+            if ($username == $adminUser && $password == $adminPassword) {
+
+                $_SESSION['loggedin'] = true;
+            }
+            else {
+            $this->_f3->set('errors["username"]', "Incorrect login information.");
+            }
+        }
+
+        if($_SESSION['loggedin']){
+            $this->_f3->reroute('/admin');  //get
+        }
         $view = new Template();
         echo $view->render('views/login.html');
     }
 
     function admin()
     {
+        if(!($_SESSION['loggedin'])){
+            $this->_f3->reroute('/admin-login');  //get
+        }
+
         $view = new Template();
         echo $view->render('views/admin.html');
+    }
+
+    function logout()
+    {
+        session_destroy();
+
+        $this->_f3->reroute('/admin-login');
     }
 }
