@@ -111,6 +111,7 @@ class SushiController
                 $_SESSION['user'] = $customer;
                 $_SESSION['meal'] = $meal;
                 $database->insertOrder();
+                $database->insertCustomer();
                 $this->_f3->reroute('/confirmation');  //get
             }
         }
@@ -137,6 +138,7 @@ class SushiController
 
     function confirmation()
     {
+
         $view = new Template();
         echo $view->render('views/confirmation.html');
     }
