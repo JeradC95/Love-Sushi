@@ -7,6 +7,7 @@ private $_lname;
 private $_phone;
 private $_email;
 private $_order;
+private $_customerId;
 
     /**
      * Customer constructor.
@@ -103,5 +104,19 @@ private $_order;
         $this->_order = $order;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCustomerId()
+    {
+        return $this->_customerId;
+    }
 
+    /**
+     * @param mixed $customerId
+     */
+    public function setCustomerId($customerId)
+    {
+        $this->_customerId = $customerId;
+    }
 }

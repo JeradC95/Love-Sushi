@@ -9,9 +9,6 @@ error_reporting(E_ALL);
 //require the autoload file
 require_once('vendor/autoload.php');
 
-//Database
-require $_SERVER['DOCUMENT_ROOT'].'/../config.php'; //access to the database
-
 //Login info
 require $_SERVER['DOCUMENT_ROOT'].'/../logincreds.php';
 
@@ -22,6 +19,7 @@ session_start();
 $f3 = Base::instance();
 $validator = new ValidateSushi();
 $dataLayer = new DataLayerSushi();
+$database = new DataSushi();
 $controller = new SushiController($f3);
 
 $f3->set('DEBUG', 3);

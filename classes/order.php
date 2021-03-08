@@ -5,6 +5,7 @@ class SushiOrder
     private $_mainRoll;
     private $_sideRoll;
     private $_drink;
+    private $_mealId;
 
     /**
      * Order constructor.
@@ -66,5 +67,19 @@ class SushiOrder
     {
         $this->_drink = $drink;
     }
+    /**
+     * @return mixed
+     */
+    public function getMealId()
+    {
+        return $this->_mealId;
+    }
 
+    /**
+     * @param mixed $mealId
+     */
+    public function setMealId($mealId)
+    {
+        $this->_mealId = $mealId;
+    }
 }
