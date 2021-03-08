@@ -29,7 +29,6 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ @BASE }}">Home
-
                     </a>
                 </li>
                 <li class="nav-item">
@@ -55,8 +54,40 @@
     </div>
     <!-- Content Row -->
     <div class="vh-100">
-    </div>
+        <h1>Orders</h1>
+        <table id = "service-table" class = "display mb-4">
+            <thead>
+            <tr>
 
+                <td>Main roll</td>
+                <td>Side roll</td>
+                <td>Drink</td>
+                <td>Alcohol</td>
+                <td>Name</td>
+                <td>Phone</td>
+                <td>Email</td>
+                <td>Date of Birth</td>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <repeat group = "{{ @rolls }}" value = "{{ @roll }}">
+                <tr>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                    <td>{{ @roll }}</td>
+                </tr>
+            </repeat>
+
+            </tbody>
+            </table>
+    </div>
 
 </div>
 <!-- /.container -->

@@ -19,6 +19,7 @@ class SushiController
     {
         global $validator;
         global $dataLayer;
+        global $database;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get Required Data
@@ -109,6 +110,7 @@ class SushiController
                 }
                 $_SESSION['user'] = $customer;
                 $_SESSION['meal'] = $meal;
+                $database->insertOrder();
                 $this->_f3->reroute('/confirmation');  //get
             }
         }
@@ -177,6 +179,15 @@ class SushiController
             $this->_f3->reroute('/admin-login');  //get
         }
 
+        global $database;
+
+        $rolls = array();
+        $result = $database->getRollOptions();
+        foreach ($result as $row) {
+            $rolls[] = $row['name'];
+        }
+
+        $this->_f3->set('rolls', $rolls);
         $view = new Template();
         echo $view->render('views/admin.html');
     }

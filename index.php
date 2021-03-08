@@ -9,11 +9,12 @@ error_reporting(E_ALL);
 //require the autoload file
 require_once('vendor/autoload.php');
 
-//Login info
-require $_SERVER['DOCUMENT_ROOT'].'/../logincreds.php';
-
 //Start a session
 session_start();
+
+require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+//Login info
+require $_SERVER['DOCUMENT_ROOT'].'/../logincreds.php';
 
 //Create an instance of Base class
 $f3 = Base::instance();
