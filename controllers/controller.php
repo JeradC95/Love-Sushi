@@ -183,13 +183,27 @@ class SushiController
 
         global $database;
 
-        $rolls = array();
-        $result = $database->getRollOptions();
+        $customers = array();
+        $orders = array();
+        $result = $database->getOrders();
         foreach ($result as $row) {
-            $rolls[] = $row['name'];
+            $orders['full'] = $row['fname'] . " ". $row['lname'];
+            $orders['phone'] = $row['phone'];
+            $orders['email'] = $row['email'];
+            $orders['dob'] = $row['dob'];
+
+            $orders['main'] = $row['main_roll'];
+            $orders['side'] = $row['side_roll'];
+            $orders['drink'] = $row['drink'];
+            $orders['alcohol'] = $row['alcohol'];
+            $orders['placed'] = date("M d, Y g:i a",
+                strtotime( $row['placed'] . '-3 hours'));
+
+            $customers[] = $orders;
         }
 
-        $this->_f3->set('rolls', $rolls);
+        $this->_f3->set('customers', $customers);
+
         $view = new Template();
         echo $view->render('views/admin.html');
     }

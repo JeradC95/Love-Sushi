@@ -13,6 +13,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
+
 
 </head>
 
@@ -59,6 +61,7 @@
             <thead>
             <tr>
 
+                <td>Order Date</td>
                 <td>Main roll</td>
                 <td>Side roll</td>
                 <td>Drink</td>
@@ -72,16 +75,17 @@
             </thead>
 
             <tbody>
-            <repeat group = "{{ @rolls }}" value = "{{ @roll }}">
+            <repeat group = "{{ @customers }}" value = "{{ @customer }}">
                 <tr>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
-                    <td>{{ @roll }}</td>
+                    <td>{{ @customer['placed'] }}</td>
+                    <td>{{ @customer['main'] }}</td>
+                    <td>{{ @customer['side'] }}</td>
+                    <td>{{ @customer['drink'] }}</td>
+                    <td>{{ @customer['alcohol'] }}</td>
+                    <td>{{ @customer['full'] }}</td>
+                    <td>{{ @customer['phone'] }}</td>
+                    <td>{{ @customer['email'] }}</td>
+                    <td>{{ @customer['dob'] }}</td>
                 </tr>
             </repeat>
 
@@ -104,8 +108,15 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery.js" ></script>
 <script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
+
+<script>
+    $('#service-table').DataTable();
+</script>
 
 </body>
 

@@ -44,7 +44,7 @@ class DataSushi
         $lname = $_SESSION['user']->getLname();
         $phone = $_SESSION['user']->getPhone();
         $email = $_SESSION['user']->getEmail();
-        $order_id = $_SESSION['user']->getOrder();
+        $order_id = $_SESSION['meal']->getMealId();
 
         if($_SESSION['user'] instanceof AdultCustomer) {
             $dob = $_SESSION['user']->getDob();
@@ -62,26 +62,10 @@ class DataSushi
         $statement->execute();
     }
 
-    function getCustomers()
-    {
-        global $dbh;
-        $sql = "SELECT * FROM sushi_customer";
-        //Prepare the statement
-        $statement = $dbh->prepare($sql);
-
-        //Execute
-        $statement ->execute();
-
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as $row) {
-            echo "Customer Id" . $row['customer_id'];
-        }
-    }
-
     function getOrders()
     {
         global $dbh;
-        $sql = "SELECT * FROM sushi_order";
+        $sql = "SELECT * FROM sushi_order JOIN sushi_customer on order_id=meal_id";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
 
@@ -89,9 +73,7 @@ class DataSushi
         $statement ->execute();
 
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-//        foreach ($result as $row) {
-//            echo "Order Id" . $row['meal_id'];
-//        }
+
         return $result;
     }
 
