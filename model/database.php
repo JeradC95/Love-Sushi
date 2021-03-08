@@ -22,6 +22,7 @@ class DataSushi
         if($_SESSION['meal'] instanceof AdultOrder) {
         $alcohol=$_SESSION['meal']->getAlcohol();
         }
+
         $statement->bindParam(':main_roll', $main_roll, PDO::PARAM_STR);
         $statement->bindParam(':side_roll', $side_roll, PDO::PARAM_STR);
         $statement->bindParam(':drink', $drink, PDO::PARAM_STR);
@@ -34,18 +35,28 @@ class DataSushi
 
     function insertCustomer()
     {
+        global $dbh;
         $sql = "INSERT INTO sushi_customer(fname, lname, phone, email, dob, order_id) VALUES (:fname, :lname, :phone, :email, :dob, :order_id)";
 
         $statement = $dbh->prepare($sql);
 
-        //bind parameter
-        $type = "cat";
-        $name = "Jay";
-        $color = "red";
+        $fname = $_SESSION['user']->getFname();
+        $lname = $_SESSION['user']->getLname();
+        $phone = $_SESSION['user']->getPhone();
+        $email = $_SESSION['user']->getEmail();
+        $order_id = $_SESSION['user']->getOrder();
 
-        $statement->bindParam(':type', $type, PDO::PARAM_STR);
-        $statement->bindParam(':name', $name, PDO::PARAM_STR);
-        $statement->bindParam(':color', $color, PDO::PARAM_STR);
+        if($_SESSION['user'] instanceof AdultCustomer) {
+            $dob = $_SESSION['user']->getDob();
+        }
+
+        $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $statement->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':order_id', $order_id, PDO::PARAM_STR);
+        $statement->bindParam(':dob', $dob, PDO::PARAM_STR);
+
 
         //execute
         $statement->execute();
@@ -53,6 +64,7 @@ class DataSushi
 
     function getCustomers()
     {
+        global $dbh;
         $sql = "SELECT * FROM sushi_customer";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -68,6 +80,7 @@ class DataSushi
 
     function getOrders()
     {
+        global $dbh;
         $sql = "SELECT * FROM sushi_order";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
