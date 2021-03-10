@@ -138,9 +138,10 @@ class SushiController
 
     function confirmation()
     {
-
         $view = new Template();
         echo $view->render('views/confirmation.html');
+
+        session_destroy();
     }
 
     function login()

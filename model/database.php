@@ -50,6 +50,7 @@ class DataSushi
             $dob = $_SESSION['user']->getDob();
         }
 
+
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
         $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
         $statement->bindParam(':phone', $phone, PDO::PARAM_STR);

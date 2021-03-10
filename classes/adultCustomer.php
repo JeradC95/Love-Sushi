@@ -16,7 +16,7 @@ class AdultCustomer extends Customer
      */
     public function setDob($dob)
     {
-        $this->_dob = $dob;
+        $this->_dob =$dob;
     }
 
 
