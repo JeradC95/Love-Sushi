@@ -6,6 +6,7 @@ class SushiOrder
     private $_sideRoll;
     private $_drink;
     private $_mealId;
+    const PRICE = 12.99;
 
     /**
      * Order constructor.
@@ -18,6 +19,10 @@ class SushiOrder
         $this->_mainRoll = $_mainRoll;
         $this->_sideRoll = $_sideRoll;
         $this->_drink = $_drink;
+    }
+
+    public function getPrice(){
+        return self::PRICE;
     }
 
     /**

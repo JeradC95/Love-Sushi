@@ -3,6 +3,11 @@
 class AdultOrder extends SushiOrder
 {
     private $_alcohol;
+    const PRICE = 14.99;
+
+    public function getPrice(){
+        return self::PRICE;
+    }
 
     /**
      * @return mixed
