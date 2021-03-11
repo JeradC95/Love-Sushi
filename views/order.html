@@ -47,7 +47,7 @@
 <div class="container">
 
     <!-- Heading Row -->
-    <div class="row align-items-center my-5">
+    <div class="row align-items-center my-5 p-4">
         <div class="col-lg-7">
             <img class="img-fluid rounded mb-4 mb-lg-0" src="images/sushi-main.jpg" alt="">
         </div>
@@ -80,7 +80,7 @@
                             <div class="col-md-6">
 
                                 <label for="froll">First Roll:</label>
-                                <check if="{{ isset(@errors['froll']) }}"> {{ @errors['froll'] }}</check>
+                                <check if="{{ isset(@errors['froll']) }}"><span class="text-danger"> {{ @errors['froll'] }}</span></check>
                                 <select class="custom-select " id="froll" name="froll">
                                     <option value=""></option>
                                     <repeat group="{{ @frolls }}" value="{{ @roll }}">
@@ -90,7 +90,7 @@
                                     </repeat>
                                 </select>
                                 <label for="sroll">Second Roll:</label>
-                                <check if="{{ isset(@errors['sroll']) }}"> {{ @errors['sroll'] }}</check>
+                                <check if="{{ isset(@errors['sroll']) }}"><span class="text-danger"> {{ @errors['sroll'] }}</span></check>
                                 <select class="custom-select" id="sroll" name="sroll">
                                     <option value=""></option>
                                     <repeat group="{{ @srolls }}" value="{{ @sroll }}">
@@ -103,7 +103,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <label for="drink">Drink:</label>
-                                        <check if="{{ isset(@errors['drink']) }}"> {{ @errors['drink'] }}</check>
+                                        <check if="{{ isset(@errors['drink']) }}"><span class="text-danger"> {{ @errors['drink'] }}</span></check>
                                     <select class="custom-select" id="drink" name="drink">
                                         <option value=""></option>
                                         <repeat group="{{ @drinks }}" value="{{ @drink }}">
@@ -127,7 +127,7 @@
                                                    value="{{ @alcohol }}">
                                             <label class="form-check-label pr-2" for="{{ @alcohol }}">{{ ucfirst(@alcohol) }}</label>
                                         </repeat>
-                                        <check if="{{ isset(@errors['alcohol']) }}"> {{ @errors['alcohol'] }}</check>
+                                        <check if="{{ isset(@errors['alcohol']) }}"><span class="text-danger"> {{ @errors['alcohol'] }}</span></check>
                                     </div>
                                 </div>
                             </div>
@@ -140,29 +140,29 @@
                         <div>
                             <label for="fname">First Name*</label>
                             <input type="text" class="form-control " id="fname" name="fname" value="{{ @fname }}">
-                            <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
+                            <check if="{{ isset(@errors['fname']) }}"><span class="text-danger"> {{ @errors['fname'] }}</span></check>
                         </div>
                         <div>
                             <label for="lname">Last Name*</label>
                             <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
-                            <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
+                            <check if="{{ isset(@errors['lname']) }}"><span class="text-danger"> {{ @errors['lname'] }}</span></check>
                         </div>
                         <div>
                             <label for="phone">Phone Number*</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
-                            <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
+                            <check if="{{ isset(@errors['phone']) }}"><span class="text-danger"> {{ @errors['phone'] }}</span></check>
                         </div>
                         <div>
                             <label for="email">Email*</label>
                             <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
-                            <check if="{{ isset(@errors['email']) }}"> {{ @errors['email'] }}</check>
+                            <check if="{{ isset(@errors['email']) }}"><span class="text-danger"> {{ @errors['email'] }}</span></check>
                         </div>
                         </div>
                         <div class="col-6 over21 hide">
                             <div>
                                 <label for="birthday">Date of Birth:</label>
                                 <input type="text" class="form-control w-50" id="birthday" name="birthday" value="{{ @birthday }}">
-                                <check if="{{ isset(@errors['birthday']) }}"> {{ @errors['birthday'] }}</check>
+                                <check if="{{ isset(@errors['birthday']) }}"><span class="text-danger"> {{ @errors['birthday'] }}</span></check>
 
                             </div>
                         </div></div>
