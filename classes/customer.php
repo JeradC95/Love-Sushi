@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Customer creates a customer object
+ */
 class Customer
 {
 private $_fname;
@@ -71,7 +74,7 @@ private $_customerId;
 
     /**
      * Sets phone number
-     * @param mixed $phone
+     * @param string $phone
      */
     public function setPhone($phone)
     {
@@ -80,7 +83,7 @@ private $_customerId;
 
     /**
      * Gets email
-     * @return d
+     * @return string email
      */
     public function getEmail()
     {
@@ -88,7 +91,8 @@ private $_customerId;
     }
 
     /**
-     * @param mixed $email
+     * Sets the email
+     * @param string $email
      */
     public function setEmail($email)
     {
@@ -96,7 +100,8 @@ private $_customerId;
     }
 
     /**
-     * @return mixed
+     * gets the order
+     * @return string $order
      */
     public function getOrder()
     {
@@ -104,7 +109,8 @@ private $_customerId;
     }
 
     /**
-     * @param mixed $order
+     * sets the order
+     * @param string $order
      */
     public function setOrder($order)
     {
@@ -112,7 +118,8 @@ private $_customerId;
     }
 
     /**
-     * @return mixed
+     * Gets the customer Id
+     * @return string $customerId
      */
     public function getCustomerId()
     {
@@ -120,7 +127,8 @@ private $_customerId;
     }
 
     /**
-     * @param mixed $customerId
+     * Sets the customer Id
+     * @param string $customerId
      */
     public function setCustomerId($customerId)
     {

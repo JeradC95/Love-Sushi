@@ -1,10 +1,8 @@
 <?php
 
-/* model/data-layer.php
- * returns data for my app
- *
+/**
+ * Class DataLayerSushi returns data for my app
  */
-
 class DataLayerSushi
 {
     /** getRolls() returns an array of rolls
@@ -27,7 +25,6 @@ class DataLayerSushi
     /** getAlc() returns an array of alcoholic options
     *    @return array
     */
-
     function getAlc(){
         return array("saki", "vodka", "rum", "whiskey", "tequila", "gin");
     }

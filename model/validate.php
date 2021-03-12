@@ -1,9 +1,8 @@
 <?php
-    /* model/validate.php
-     * Contains validation functions
-     *
-     */
-//contains validation functions
+
+/**
+ * Class ValidateSushi contains validate functions
+ */
 Class ValidateSushi
 {
     private  $_dataLayer;
@@ -41,10 +40,6 @@ Class ValidateSushi
 
     }
 
-//Function not finished
-    function validDate($day, $month, $year)
-    {
-    }
 
     /** validChoice() returns true if the selected roll is in the list
      * of valid options
@@ -58,6 +53,11 @@ Class ValidateSushi
         return (in_array($selected, $validChoice));
     }
 
+    /**
+     * validBirthday returns true if the user is over 21
+     * @param $birthday
+     * @return bool $today
+     */
     function validBirthday($birthday)
     {
         $dob = strtotime($birthday);

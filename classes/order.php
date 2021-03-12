@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class SushiOrder Creates a meal object based on user input
+ */
 class SushiOrder
 {
     private $_mainRoll;
@@ -21,12 +24,17 @@ class SushiOrder
         $this->_drink = $_drink;
     }
 
+    /**
+     * Gets price
+     * @return float $PRICE
+     */
     public function getPrice(){
         return self::PRICE;
     }
 
     /**
-     * @return mixed
+     * gets the first roll
+     * @return string $mainRoll
      */
     public function getMainRoll()
     {
@@ -34,7 +42,8 @@ class SushiOrder
     }
 
     /**
-     * @param mixed $mainRoll
+     * Sets the first roll
+     * @param string $mainRoll
      */
     public function setMainRoll($mainRoll)
     {
@@ -42,7 +51,8 @@ class SushiOrder
     }
 
     /**
-     * @return mixed
+     * Gets the second roll
+     * @return string $sideRoll
      */
     public function getSideRoll()
     {
@@ -50,7 +60,8 @@ class SushiOrder
     }
 
     /**
-     * @param mixed $sideRoll
+     * Sets the second roll
+     * @param string $sideRoll
      */
     public function setSideRoll($sideRoll)
     {
@@ -58,7 +69,8 @@ class SushiOrder
     }
 
     /**
-     * @return mixed
+     * Gets the drink
+     * @return string $drink
      */
     public function getDrink()
     {
@@ -66,14 +78,16 @@ class SushiOrder
     }
 
     /**
-     * @param mixed $drink
+     * Sets the drink
+     * @param string $drink
      */
     public function setDrink($drink)
     {
         $this->_drink = $drink;
     }
     /**
-     * @return mixed
+     * Gets the meal ID
+     * @return string $mealId
      */
     public function getMealId()
     {
@@ -81,7 +95,8 @@ class SushiOrder
     }
 
     /**
-     * @param mixed $mealId
+     * sets mealId
+     * @param string $mealId
      */
     public function setMealId($mealId)
     {

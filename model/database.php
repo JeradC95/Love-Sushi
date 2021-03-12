@@ -76,7 +76,8 @@ class DataSushi
     }
 
     /**
-     * @return
+     * Grabs the order from database and the customer from database
+     * @return array $result
      */
     function getOrders()
     {
@@ -93,6 +94,10 @@ class DataSushi
         return $result;
     }
 
+    /**
+     * Gets the roll options from database
+     * @return array $result
+     */
     function getRollOptions()
     {
         global $dbh;
