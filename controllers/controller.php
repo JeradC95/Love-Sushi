@@ -1,20 +1,36 @@
 <?php
 
+/**
+ * This class renders various pages for the
+ * Love, Sushi website
+ * Class SushiController
+ */
 class SushiController
 {
     private $_f3;
 
+    /**
+     * SushiController constructor.
+     * @param $f3
+     */
     function __construct($f3)
     {
         $this->_f3 = $f3;
     }
 
+    /**
+     * Function to send the user to the home page
+     */
     function home()
     {
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
+    /**
+     * order page which handles the form
+     * and sets the session array with values
+     */
     function order()
     {
         global $validator;
@@ -28,15 +44,18 @@ class SushiController
             $userDrink = $_POST['drink'];
 
             if (!$validator->validChoice($userFroll, $dataLayer->getRolls())) {
-                $this->_f3->set('errors["froll"]', "Please select a valid roll.");
+                $this->_f3->set('errors["froll"]',
+                    "Please select a valid roll.");
             }
 
             if (!$validator->validChoice($userSroll, $dataLayer->getRolls())) {
-                $this->_f3->set('errors["sroll"]', "Please select a valid roll.");
+                $this->_f3->set('errors["sroll"]',
+                    "Please select a valid roll.");
             }
 
             if (!$validator->validChoice($userDrink, $dataLayer->getDrinks())) {
-                $this->_f3->set('errors["drink"]', "Please select a drink.");
+                $this->_f3->set('errors["drink"]',
+                    "Please select a drink.");
             }
 
             //get data from post array
@@ -47,17 +66,21 @@ class SushiController
 
             //Validate
             if(!$validator->validName($fname)) {
-                $this->_f3->set('errors["fname"]',"First name cannot be blank.");
+                $this->_f3->set('errors["fname"]',
+                    "First name cannot be blank.");
             }
             if(!$validator->validName($lname)) {
-                $this->_f3->set('errors["lname"]',"Last name cannot be blank.");
+                $this->_f3->set('errors["lname"]',
+                    "Last name cannot be blank.");
             }
             if(!$validator->validPhone($phone)) {
-                $this->_f3->set('errors["phone"]',"Please type a valid phone number.");
+                $this->_f3->set('errors["phone"]',
+                    "Phone number format 1234567890.");
             }
 
             if (!$validator->validEmail($email)) {
-                $this->_f3->set('errors["email"]', "Email required.");
+                $this->_f3->set('errors["email"]',
+                    "Email required.");
             }
 
             //Alcohol option
@@ -66,7 +89,8 @@ class SushiController
 
                 $userAlcohol = $_POST['alcohol'];
                 if (!$validator->validChoice($userAlcohol, $dataLayer->getAlc())) {
-                    $this->_f3->set('errors["alcohol"]', "Please choose an alcohol to add.");
+                    $this->_f3->set('errors["alcohol"]',
+                        "Please choose an alcohol to add.");
                 }
 
                 $birthday = $_POST['birthday'];
@@ -79,20 +103,26 @@ class SushiController
 
 
                         if(!checkdate($month, $day, $year)) {
-                            $this->_f3->set('errors["birthday"]', "Must be in mm/dd/yyyy format");
+                            $this->_f3->set('errors["birthday"]',
+                                "Must be in mm/dd/yyyy format");
                         }
                         else {
                             if(!$validator->validBirthday($birthday)) {
-                                $this->_f3->set('errors["birthday"]', "You must be over 21 to get alcohol.");
+                                $this->_f3->set('errors["birthday"]',
+                                    "You must be over 21 to get alcohol.");
                             }
                         }
-
                     }
                     else {
-                        $this->_f3->set('errors["birthday"]', "Please verify birthdate.");
+                        $this->_f3->set('errors["birthday"]',
+                            "Please verify birthdate.");
                     }
                 }
-            }
+                else {
+                        $this->_f3->set('errors["birthday"]',
+                            "Please verify birthdate.");
+                    }
+                }
 
             //if there are no errors, redirect
             if (empty($this->_f3->get('errors'))) {
@@ -136,6 +166,9 @@ class SushiController
         echo $view->render('views/order.html');
     }
 
+    /**
+     * confirmation page
+     */
     function confirmation()
     {
         $view = new Template();
@@ -144,9 +177,11 @@ class SushiController
         session_destroy();
     }
 
+    /**
+     * Log in to the admin page
+     */
     function login()
     {
-
     //If the form has been submitted
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -154,10 +189,11 @@ class SushiController
             $username = strtolower(trim($_POST['username']));
             $password = trim($_POST['password']);
 
-            //Actual username and password need to be stored in a seperate file
-            //Should be moved to home directory ABOVE public-html
-            $adminUser = "admin";
-            $adminPassword = "@dm1n";
+            //Actual username and password stored in a seperate file
+            global $adminUser;
+            global $adminPassword;
+            //$adminUser = "admin";
+            //$adminPassword = "@dm1n";
 
             //If they are correct
             if ($username == $adminUser && $password == $adminPassword) {
@@ -176,6 +212,10 @@ class SushiController
         echo $view->render('views/login.html');
     }
 
+    /**
+     * Shows a page containing database information to the
+     * admin
+     */
     function admin()
     {
         if(!($_SESSION['loggedin'])){
@@ -209,6 +249,9 @@ class SushiController
         echo $view->render('views/admin.html');
     }
 
+    /**
+     * destroy the session array to logout user
+     */
     function logout()
     {
         session_destroy();

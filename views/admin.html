@@ -49,8 +49,8 @@
         <!-- Call to Action Well -->
         <div class="card text-white bg-secondary my-5 py-4 text-center">
             <div class="card-body">
-                <p class="text-white m-0">Admin Only</p>
-                <a href="logout" id="out">Log Out</a>
+                <p class="text-white">Admin Only</p>
+                <a href="logout" id="out" class="text-light border rounded p-2 m-2"> Log Out</a>
             </div>
         </div>
     </div>
@@ -115,7 +115,11 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 
 <script>
-    $('#service-table').DataTable();
+    $('#service-table').DataTable(
+        {
+            "order": [[ 0, "desc" ]]
+        }
+    );
 </script>
 
 </body>
