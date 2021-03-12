@@ -1,13 +1,22 @@
 <?php
 
+/**
+ * Class DataSushi connects to our database and inserts SQL statements
+ */
 class DataSushi
 {
 
+    /**
+     * Connects to the database
+     */
     function connect()
     {
         require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
     }
 
+    /**
+     * Inserts data from the form into the database
+     */
     function insertOrder()
     {
         global $dbh;
@@ -33,6 +42,9 @@ class DataSushi
         $_SESSION['meal']->setMealId($dbh->lastInsertId());
     }
 
+    /**
+     * Inserts data from customer info into the database
+     */
     function insertCustomer()
     {
         global $dbh;
@@ -63,6 +75,9 @@ class DataSushi
         $statement->execute();
     }
 
+    /**
+     * @return
+     */
     function getOrders()
     {
         global $dbh;

@@ -25,6 +25,7 @@ private $_customerId;
     }
 
     /**
+     * Gets first name
      * @return mixed
      */
     public function getFname()
@@ -33,7 +34,8 @@ private $_customerId;
     }
 
     /**
-     * @param mixed $fname
+     * Sets first name
+     * @param String $fname
      */
     public function setFname($fname)
     {
@@ -41,7 +43,8 @@ private $_customerId;
     }
 
     /**
-     * @return mixed
+     * Gets last name
+     * @return String $lname
      */
     public function getLname()
     {
@@ -49,7 +52,8 @@ private $_customerId;
     }
 
     /**
-     * @param mixed $lname
+     * Sets last name
+     * @param String $lname
      */
     public function setLname($lname)
     {
@@ -57,7 +61,8 @@ private $_customerId;
     }
 
     /**
-     * @return mixed
+     * Gets phone number
+     * @return String $phoneNumber
      */
     public function getPhone()
     {
@@ -65,6 +70,7 @@ private $_customerId;
     }
 
     /**
+     * Sets phone number
      * @param mixed $phone
      */
     public function setPhone($phone)
@@ -73,7 +79,8 @@ private $_customerId;
     }
 
     /**
-     * @return mixed
+     * Gets email
+     * @return d
      */
     public function getEmail()
     {
