@@ -73,16 +73,16 @@
     <!-- Content Row -->
     <div>
         <div class="mb-5">
-                <form action= "#" method="post">
+                <form id= "sushi" action= "#" method="post">
                     <fieldset>
                         <h2>Order Here</h2>
+                        <span class="d-none text-danger" id ="incomplete"></span>
                         <div class="row">
                             <div class="col-md-6">
-
                                 <label for="froll">First Roll:</label>
                                 <check if="{{ isset(@errors['froll']) }}"><span class="text-danger"> {{ @errors['froll'] }}</span></check>
                                 <select class="custom-select " id="froll" name="froll">
-                                    <option value=""></option>
+                                    <option value="none"></option>
                                     <repeat group="{{ @frolls }}" value="{{ @roll }}">
                                         <option value="{{ @roll }}"
                                         <check if="{{ @roll == @userFroll }}"> selected </check>
@@ -92,7 +92,7 @@
                                 <label for="sroll">Second Roll:</label>
                                 <check if="{{ isset(@errors['sroll']) }}"><span class="text-danger"> {{ @errors['sroll'] }}</span></check>
                                 <select class="custom-select" id="sroll" name="sroll">
-                                    <option value=""></option>
+                                    <option value="none"></option>
                                     <repeat group="{{ @srolls }}" value="{{ @sroll }}">
                                         <option value="{{ @sroll }}"
                                         <check if="{{ @sroll == @userSroll }}"> selected </check>
@@ -105,7 +105,7 @@
                                     <label for="drink">Drink:</label>
                                         <check if="{{ isset(@errors['drink']) }}"><span class="text-danger"> {{ @errors['drink'] }}</span></check>
                                     <select class="custom-select" id="drink" name="drink">
-                                        <option value=""></option>
+                                        <option value="none"></option>
                                         <repeat group="{{ @drinks }}" value="{{ @drink }}">
                                             <option value="{{ @drink }}"
                                             <check if="{{ @drink == @userDrink }}"> selected </check>
@@ -119,8 +119,9 @@
                                 </div>
 
                                 <div class="form check form-check-inline over21 hide">
-                                    <p class="">Add Alcohol: (+$2)</p>
+                                    <p class="">Add Alcohol: (+$2)</p> <span class="d-none text-danger" id ="erralc"></span>
                                     <div class="container">
+
                                         <repeat group="{{ @alcohols }}" value="{{ @alcohol }}">
                                             <input class="form-check-input" type="radio"
                                                    name="alcohol" id="{{ @alcohol }}"
@@ -141,21 +142,25 @@
                             <label for="fname">First Name*</label>
                             <input type="text" class="form-control " id="fname" name="fname" value="{{ @fname }}">
                             <check if="{{ isset(@errors['fname']) }}"><span class="text-danger"> {{ @errors['fname'] }}</span></check>
+                            <span class="d-none text-danger" id ="errfname"></span>
                         </div>
                         <div>
                             <label for="lname">Last Name*</label>
                             <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
                             <check if="{{ isset(@errors['lname']) }}"><span class="text-danger"> {{ @errors['lname'] }}</span></check>
+                            <span class="d-none text-danger" id ="errlname"></span>
                         </div>
                         <div>
                             <label for="phone">Phone Number*</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
                             <check if="{{ isset(@errors['phone']) }}"><span class="text-danger"> {{ @errors['phone'] }}</span></check>
+                            <span class="d-none text-danger" id ="errPhone"></span>
                         </div>
                         <div>
                             <label for="email">Email*</label>
                             <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
                             <check if="{{ isset(@errors['email']) }}"><span class="text-danger"> {{ @errors['email'] }}</span></check>
+                            <span class="d-none text-danger" id ="erremail"></span>
                         </div>
                         </div>
                         <div class="col-6 over21 hide">
@@ -163,6 +168,7 @@
                                 <label for="birthday">Date of Birth:</label>
                                 <input type="text" class="form-control w-50" id="birthday" name="birthday" value="{{ @birthday }}">
                                 <check if="{{ isset(@errors['birthday']) }}"><span class="text-danger"> {{ @errors['birthday'] }}</span></check>
+                                <span class="d-none text-danger" id ="errAge"></span>
 
                             </div>
                         </div></div>
@@ -199,6 +205,8 @@
 <script src="https://code.jquery.com/jquery.js" ></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="scripts/myScripts.js"></script>
+
 <script>
 
     $('.over21').hide();

@@ -11,7 +11,10 @@ Class ValidateSushi
         $this->_dataLayer = new DataLayerSushi();
     }
 
-    /** validName() returns true if Name is not empty */
+    /** validName() returns true if Name is not empty
+     * @param $name
+     * @return bool
+     */
     function validName($name)
     {
         return !empty($name && ctype_alpha($name));
